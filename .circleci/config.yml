@@ -23,7 +23,7 @@ workflows:
     version: 2
     build-test-deploy:
         jobs:
-            - prepare-dependencies
-            - test:
-                  requires:
-                      - prepare-dependencies
+        - prepare-dependecies
+        - tests:
+            requires:
+              - prepare-dependecies
