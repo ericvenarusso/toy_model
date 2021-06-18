@@ -1,32 +1,26 @@
 version: 2.1
+
 orbs:
-  node: circleci/python:3.8
+  python: circleci/python@1.4.0
+
 jobs:
-  prepare-dependencies:
-    working_directory: ~/toy_model
-    executor: python/default
-    steps:
-      - checkout
-      - run: |
-          sudo pip install pipenv
-          pipenv install
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
-  tests:
+  install-packages:
     docker:
-      - image: cimg/python:current
+      # replace with your preferred image
+      - image: cimg/base:stable
     steps:
-      # Reuse the workspace from the build job
-      - attach_workspace:
-          at: .
-      - run: |
-          pipenv run pytest
+      - python/install-packages:
+          app-dir: ~/toy_model 
+          pip-dependency-file: requirements.txt 
+          pkg-manager: pip 
+
 workflows:
-    build-test:
-        jobs:
-        - prepare-dependencies
-        - tests:
-            requires:
-              - prepare-dependencies
+  build-test:
+    jobs:
+      - install-packages
+      - python/test:
+          requires: 
+            - install-packages
+          app-dir: ~/toy_model 
+          test-tool: pytest 
+          version: '3.8' 
