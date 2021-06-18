@@ -7,18 +7,18 @@ jobs:
     prepare-dependencies:
       docker:
         - image: circleci/python:3.8
+      steps:
         - run:
           command: |
             sudo pip install pipenv
             pipenv install         
-
     tests:
       docker: 
         - image: circleci/python:3.8
+      steps:
         - run:
           command: |
             pipenv run pytest
-
 workflows:
     version: 2
     build-test:
