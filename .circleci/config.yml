@@ -6,13 +6,8 @@ orbs:
 jobs:
   example-job:
     docker:
-      # replace with your preferred image
-      - image: cimg/base:stable
+      - image: cimg/python:3.8
     steps:
-      - run:
-          command: |
-            sudo pip install pipenv
-            pipenv install
       - python/install-packages:
           app-dir: ~/toy_model 
           pip-dependency-file: requirements.txt 
