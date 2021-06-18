@@ -27,7 +27,7 @@ workflows:
         - python/test:
             app-dir: ~/toy_model 
             pip-dependency-file: requirements.tx 
-            pkg-manager: pipenv 
+            pkg-manager: pip 
             test-tool: pytest 
             version: '3.8' 
         - docker-build:
