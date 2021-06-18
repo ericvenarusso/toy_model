@@ -19,13 +19,14 @@ jobs:
             pipenv run pytest
 
   docker-build:
+    working_directory: ~/toy_model
     docker:
       - image: cimg/base:stable
     steps:
       - docker/build:
           debug: false 
           dockerfile: Dockerfile 
-          image: ~/toy_model 
+          image: toy_model 
           path: . 
           registry: docker.io 
           step-name: Docker Build 
