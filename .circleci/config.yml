@@ -16,3 +16,5 @@ workflows:
   example-workflow:
     jobs:
       - example-job
+      - python/test:
+          test-tool: pytest 
