@@ -26,7 +26,7 @@ workflows:
       jobs:
         - python/test:
             app-dir: ~/toy_model 
-            pip-dependency-file: requirements.tx 
+            pip-dependency-file: requirements.txt
             pkg-manager: pip 
             test-tool: pytest 
             version: '3.8' 
