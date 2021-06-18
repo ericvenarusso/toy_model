@@ -12,7 +12,6 @@ jobs:
       - python/install-packages:
           app-dir: ~/toy_model 
           pip-dependency-file: requirements.txt 
-          pkg-manager: pip 
 
 workflows:
   build-test:
