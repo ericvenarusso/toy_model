@@ -3,12 +3,17 @@ orbs:
   node: circleci/python:3.8
 jobs:
   prepare-dependencies:
+    working_directory: ~/toy_model
     executor: python/default
     steps:
       - checkout
       - run: |
           sudo pip install pipenv
           pipenv install
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   tests:
     docker:
       - image: cimg/python:current
