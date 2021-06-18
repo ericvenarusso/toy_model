@@ -25,7 +25,7 @@ jobs:
       - docker/build:
           debug: false 
           dockerfile: Dockerfile 
-          image: toy_model 
+          image: ~/toy_model 
           path: . 
           registry: docker.io 
           step-name: Docker Build 
