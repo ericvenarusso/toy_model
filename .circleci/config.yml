@@ -13,8 +13,9 @@ jobs:
     docker:
       - image: cimg/python:current
     steps:
+      # Reuse the workspace from the build job
       - attach_workspace:
-        at: .
+          at: .
       - run: |
           pipenv run pytest
 workflows:
