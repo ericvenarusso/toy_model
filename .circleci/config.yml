@@ -1,9 +1,9 @@
 version: 2 # use CircleCI 2.0
-
+orbs:
+  node: circleci/python:3.8
 jobs:
   prepare-dependencies:
-    docker:
-      - image: circleci/python:3.8
+    executor: python/default
     steps:
       - checkout
       - run: |
@@ -11,9 +11,10 @@ jobs:
           pipenv install
   tests:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:current
     steps:
-      - checkout
+      - attach_workspace:
+        at: .
       - run: |
           pipenv run pytest
 workflows:
