@@ -1,20 +1,21 @@
-
 version: 2.1
+
 orbs:
   python: circleci/python@1.4.0
 
 jobs:
-  example-job:
+  build:
     docker:
+      # replace with your preferred image
       - image: cimg/python:3.8
     steps:
       - python/install-packages:
-          app-dir: ~/toy_model 
+          app-dir:  ~/toy_model 
           pip-dependency-file: requirements.txt 
 
 workflows:
-  example-workflow:
-    jobs:
-      - example-job
-      - python/test:
-          test-tool: pytest 
+    main:
+      jobs:
+        - build
+        - python/test:
+            test-tool: pytest 
