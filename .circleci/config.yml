@@ -26,12 +26,10 @@ jobs:
           debug: false 
           dockerfile: Dockerfile 
           image: toy_model 
-          lint-dockerfile: true 
           path: . 
           registry: docker.io 
           step-name: Docker Build 
           tag: $CIRCLE_SHA1 
-          treat-warnings-as-errors: true 
 
 workflows:
     main:
