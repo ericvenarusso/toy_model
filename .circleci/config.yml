@@ -9,7 +9,7 @@ jobs:
       - run: |
           sudo pip install pipenv
           pipenv install
-  test:
+  tests:
     docker:
       - image: circleci/python:3.8
     steps:
