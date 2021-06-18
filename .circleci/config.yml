@@ -2,23 +2,21 @@ version: 2.1
 
 orbs:
   docker: circleci/docker@1.6.0  
+  python: circleci/python@1.4.0
 
 jobs:
   tests:
     working_directory: ~/toy_model
     docker:
-      - image: circleci/python:3.8.0
+      - image: cimg/python:3.8.0
     steps:
       - checkout
-      - run:
-          name: "Installing Dependencies"
-          command: |  
-            sudo pip install pipenv
-            pipenv install
+      - python/install-packages:
+          pip-dependency-file: requirements.txt 
       - run:
           name: "Executing the tests"
           command: |  
-            pipenv pytest
+            pipenv run pytest
 
   docker-build:
     docker:
