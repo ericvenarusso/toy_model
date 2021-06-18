@@ -18,4 +18,6 @@ workflows:
       jobs:
         - build
         - python/test:
+            requires:
+              - build
             test-tool: pytest 
