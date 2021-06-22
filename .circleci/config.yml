@@ -1,7 +1,6 @@
 version: 2.1
 
-orbs:
-  docker: circleci/docker@1.6.0  
+orbs:  
   python: circleci/python@1.4.0
 
 jobs:
@@ -22,6 +21,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - checkout
       - run: 
           name: "Building the Docker Image"
           command: |
