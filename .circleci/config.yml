@@ -25,10 +25,17 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
+          name: "Docker Login"
           command: |
-            docker build -t ericvenarusso/toy_model:$CIRCLE_SHA1 .
             docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASS"
-            docker push ericvenarusso/toy_model:$CIRCLE_SHA1
+      - run:
+          name: "Building Docker Image"
+          command: |
+            docker build -t $DOCKERHUB_USERNAME/toy_model:$CIRCLE_SHA1 .
+      - run:
+          name: "Pushing Docker Image"
+          command: |
+            docker push $DOCKERHUB_USERNAME/toy_model:$CIRCLE_SHA1
             
 workflows:
     main:
