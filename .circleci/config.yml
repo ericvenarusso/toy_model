@@ -19,6 +19,7 @@ jobs:
             pipenv run pytest
 
   docker-build:
+    working_directory: ~/toy_model
     docker:
       - image: cimg/base:stable
     steps:
