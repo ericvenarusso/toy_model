@@ -20,7 +20,7 @@ jobs:
   docker-build:
     working_directory: ~/toy_model
     docker:
-      - image: cimg/python:3.8.0
+      - image: docker:latest
     steps:
       - checkout
       - docker/build:
