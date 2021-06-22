@@ -26,7 +26,7 @@ jobs:
       - setup_remote_docker
       - run:
           command: |
-            docker build -t toy_model . 
+            docker build -t toy_model:$CIRCLE_SHA1 . 
 workflows:
     main:
       jobs:
