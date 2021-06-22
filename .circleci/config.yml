@@ -26,6 +26,7 @@ jobs:
       - run:
           name: "Installing CodeCov" 
           command: |
+            sudo apt-get install python-pip python-dev
             sudo pip install codecov
       - run:
           name: "CodeCov Report"
