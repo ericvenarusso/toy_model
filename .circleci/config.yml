@@ -26,7 +26,7 @@ jobs:
       - run:
           name: "Executing the tests"
           command: |  
-            ls .
+            ls  /home/circleci/toy_model
       - docker/build:
           debug: false 
           dockerfile: Dockerfile 
