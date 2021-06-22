@@ -17,18 +17,15 @@ jobs:
           name: "Executing the tests"
           command: |  
             pipenv run pytest
-
   docker-build:
     working_directory: ~/toy_model
     docker:
       - image: cimg/base:stable
     steps:
-      - docker/build: 
-          image: toy_model 
-          registry: docker.io 
-          step-name: Docker Build 
-          tag: $CIRCLE_SHA1 
-
+      - run: 
+          name: "Building the Docker Image"
+          command: |
+            docker build -t ericvenarusso/toy_model:$CIRCLE_SHA1 .
 workflows:
     main:
       jobs:
