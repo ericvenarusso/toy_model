@@ -19,19 +19,14 @@ jobs:
             pipenv run pytest
 
   docker-build:
-    working_directory: ~/toy_model
     docker:
       - image: cimg/base:stable
     steps:
-      - run:
-          name: "Executing the tests"
-          command: |  
-            ls  /home/circleci/toy_model
       - docker/build:
           debug: false 
           dockerfile: Dockerfile 
           image: toy_model 
-          path: .
+          path: ~/toy_model
           registry: docker.io 
           step-name: Docker Build 
           tag: $CIRCLE_SHA1 
