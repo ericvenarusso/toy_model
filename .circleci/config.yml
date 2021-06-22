@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:  
   python: circleci/python@1.4.0
+  docker: circleci/docker@1.6.0
 
 jobs:
   tests:
@@ -19,13 +20,11 @@ jobs:
   docker-build:
     working_directory: ~/toy_model
     docker:
-      - image: cimg/base:stable
+      - image: cimg/base
     steps:
       - checkout
-      - run: 
-          name: "Building the Docker Image"
-          command: |
-            docker build -t ericvenarusso/toy_model:$CIRCLE_SHA1 .
+      - docker/build:
+          image: toy_model 
 workflows:
     main:
       jobs:
