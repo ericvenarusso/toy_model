@@ -20,7 +20,7 @@ jobs:
   docker-build:
     working_directory: ~/toy_model
     docker:
-      - image: cimg/base
+      - image: cimg/base:stable
     steps:
       - checkout
       - docker/build:
