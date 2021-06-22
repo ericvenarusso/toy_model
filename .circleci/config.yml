@@ -22,11 +22,8 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - docker/build:
-          debug: false 
-          dockerfile: Dockerfile 
+      - docker/build: 
           image: toy_model 
-          path: ~/toy_model
           registry: docker.io 
           step-name: Docker Build 
           tag: $CIRCLE_SHA1 
