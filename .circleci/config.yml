@@ -1,8 +1,6 @@
 version: 2.1
-
 orbs:  
   python: circleci/python@1.4.0
-  docker: circleci/docker@1.6.0
 
 jobs:
   tests:
@@ -17,24 +15,6 @@ jobs:
           name: "Executing the tests"
           command: |  
             pipenv run pytest      
-  codecov:
-    working_directory: ~/toy_model
-    docker:
-      - image: cimg/python:3.8.0
-    steps:
-      - checkout
-      - run:
-          name: "Installing CodeCov" 
-          command: |
-            sudo apt-get install python-pip python-dev
-            sudo pip install codecov
-      - run:
-          name: "CodeCov Report"
-          command: | 
-            mkdir test-reports
-            coverage report && coverage xml -o test-reports/coverage.xml
-      - store_test_results:
-          path: test-reports
   docker-build-publish:
     working_directory: ~/toy_model
     docker:
@@ -58,8 +38,6 @@ workflows:
     main:
       jobs:
         - tests
-        - codecov
         - docker-build-publish:
             requires:
             - tests
-            - codecov
