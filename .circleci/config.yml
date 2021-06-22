@@ -36,6 +36,7 @@ jobs:
       - setup_remote_docker
       - run: 
           command: |
+            docker images
             docker login -u "$DOCKERHUB_USERNAME" -p $DOCKERHUB_PASS 
             docker push toy_model:$CIRCLE_SHA1
 
