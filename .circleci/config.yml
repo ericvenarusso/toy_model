@@ -23,8 +23,9 @@ jobs:
       - image: docker:latest
     steps:
       - checkout
-      - docker/build:
-          image: toy_model 
+      - run:
+          command: |
+            docker build -t toy_model:$CIRCLE_SHA1 . 
 workflows:
     main:
       jobs:
