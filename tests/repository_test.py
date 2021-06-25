@@ -2,14 +2,15 @@ import pytest
 
 import os
 
-from src.ml import train
-from src.ml import scoring
-    
+from app.core.machine_learning import trainer
+from app.core.machine_learning import predictor
+
+
 def test_train_file_existence():
-     assert os.path.isfile('src/ml/train.py')
+     assert os.path.isfile('app/core/machine_learning/trainer.py')
 
 def test_scoring_file_existence():
-     assert os.path.isfile('src/ml/scoring.py')
+     assert os.path.isfile('app/core/machine_learning/predictor.py')
 
 def test_gitignore_file_existence():
     assert os.path.isfile('.gitignore')
@@ -21,7 +22,7 @@ def test_dockerfile_file_existence():
     assert os.path.isfile('Dockerfile')
 
 def test_train_function_existence():
-    assert "train" in list(train.__dict__.keys())
+    assert "train" in list(trainer.__dict__.keys())
 
 def test_predict_function_existence():
-    assert "predict" in list(scoring.__dict__.keys())
+    assert "predict" in list(predictor.__dict__.keys())

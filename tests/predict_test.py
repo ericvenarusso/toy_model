@@ -3,7 +3,7 @@ import pytest
 import numpy as np
 import pandas as pd
 
-from src.ml.scoring import predict
+from app.core.machine_learning.predictor import predict
 
 def test_predict_return():
     data = pd.DataFrame(
