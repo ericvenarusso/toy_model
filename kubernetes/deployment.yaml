@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: toy-model
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: toy-model
+  template:
+    metadata:
+      name: toy_model
+      labels:
+        app.kubernetes.io/name: toy-model
+    spec:
+      containers:
+      - image: ericvenarusso/toy_model:da980fcb3db1ad773bca180547c4981fa898b66b
+        name: toy-model
+        ports:
+        - name: http
+          containerPort: 8000
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: toy-model
+spec:
+  selector:
+    app.kubernetes.io/name: toy-model
+  ports:
+    - protocol: TCP
+      port: 8000
