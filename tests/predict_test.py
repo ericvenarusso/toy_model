@@ -1,22 +1,12 @@
 import pytest
 
 import numpy as np
-import pandas as pd
 
 from app.core.machine_learning.predictor import predict
 
 def test_predict_return():
-    data = pd.DataFrame(
-        {
-            "Pclass": [3, 1, 3],
-            "Sex": ["male", "female", "female"],
-            "Fare": [7.2500, 71.2833, 7.9250]
-        }
-    )
- 
+    data = np.array([[3, "male", 1]])
     result = predict(data)
-
-    assert isinstance(result, np.ndarray)
-    assert len(result) != 0
-    assert isinstance(result[0], np.int64)
+    
+    assert isinstance(result, int)
 

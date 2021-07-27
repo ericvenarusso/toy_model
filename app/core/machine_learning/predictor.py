@@ -8,4 +8,5 @@ def _load_model():
 
 def predict(data):
     model = _load_model()
-    return model.predict(data)
+    prediction = int(model.predict(data)[0])
+    return prediction
