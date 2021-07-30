@@ -8,7 +8,6 @@ from elasticsearch import Elasticsearch
 from app.core.machine_learning.predictor import predict
 from app.api.schemas.passengers import TitanicPassengers
 
-
 router = APIRouter()
 
 @router.post("/predict")
@@ -20,9 +19,12 @@ def post_predict(input_data: TitanicPassengers):
         'age': input_data.age,
         'sex': input_data.sex,
         'pclass': input_data.pclass,
+        'predict': predict_result,
         'timestamp': datetime.now()
     }
-    es = Elasticsearch("http://elasticsearch:9200")
+    es = Elasticsearch(
+            hosts=[{"host": "host.docker.internal", "port": 9200}],
+            retry_on_timeout=True)
     es.index(f"titanic_api_post_predict_{str(datetime.now().date())}", body=log_body)
 
     return predict_result
