@@ -13,7 +13,7 @@ jobs:
           pip-dependency-file: requirements.txt 
       - run:
           name: "Executing the tests"
-          command: |  
+          command: |
             pipenv run pytest      
   docker-build-publish:
     working_directory: ~/toy_model
