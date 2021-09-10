@@ -1,7 +1,7 @@
 import joblib
 import numpy as np
 
-from app.core.config import MODEL_FILE_NAME
+from app.ml.config import MODEL_FILE_NAME
 
 
 def _load_model():

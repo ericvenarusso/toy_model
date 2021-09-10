@@ -9,7 +9,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.compose import ColumnTransformer, make_column_selector
 
-from app.core.config import DATA_PATH, MODEL_FILE_NAME
+from app.ml.config import DATA_PATH, MODEL_FILE_NAME
 
 
 def _load_train_data() -> pd.DataFrame:

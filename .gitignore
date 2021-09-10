@@ -135,3 +135,6 @@ mlflow.db
 
 #DS_Store
 .DS_Store
+
+# Pytest
+.pytest_cache
