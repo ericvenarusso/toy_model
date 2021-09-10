@@ -15,29 +15,7 @@ jobs:
           name: "Executing the tests"
           command: |
             pipenv run pytest      
-  docker-build-publish:
-    working_directory: ~/toy_model
-    docker:
-      - image: docker:latest
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: "Docker Login"
-          command: |
-            docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASS"
-      - run:
-          name: "Building Docker Image"
-          command: |
-            docker build -t $DOCKERHUB_USERNAME/toy_model:$CIRCLE_SHA1 .
-      - run:
-          name: "Pushing Docker Image"
-          command: |
-            docker push $DOCKERHUB_USERNAME/toy_model:$CIRCLE_SHA1
 workflows:
     main:
       jobs:
         - tests
-        - docker-build-publish:
-            requires:
-            - tests
